@@ -1,5 +1,6 @@
 package com.example.documentdatabaseservice.controller;
 
+import com.example.documentdatabaseservice.enums.ReviewStatus;
 import com.example.documentdatabaseservice.model.Review;
 import com.example.documentdatabaseservice.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,16 @@ public class ReviewController {
     public ResponseEntity<List<Review>> createReview(@PathVariable String hotelId) {
         List<Review> reviews = reviewService.getReviewsByHotelId(hotelId);
         return ResponseEntity.ok(reviews);
+    }
+
+    @PutMapping("/{reviewId}/{status}")
+    public ResponseEntity<Review> updateReviewStatus(@PathVariable String reviewId, @PathVariable String status) {
+        Review updatedReview = reviewService.updateReviewStatus(reviewId, status);
+        if (updatedReview != null) {
+            return ResponseEntity.ok(updatedReview);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

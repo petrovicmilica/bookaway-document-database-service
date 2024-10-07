@@ -1,5 +1,6 @@
 package com.example.documentdatabaseservice.model;
 
+import com.example.documentdatabaseservice.enums.ReviewStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -35,6 +36,9 @@ public class Review {
 
     @Field(name = "hotel_id")
     private String hotel_id;
+
+    @Field(name = "review_status")
+    private ReviewStatus reviewStatus;
 
     public String getId() {
         return id;
@@ -107,4 +111,13 @@ public class Review {
     public void setHotel_id(String hotel_id) {
         this.hotel_id = hotel_id;
     }
+
+    public ReviewStatus getReviewStatus() {
+        return reviewStatus;
+    }
+
+    public void setReviewStatus(ReviewStatus reviewStatus) {
+        this.reviewStatus = reviewStatus;
+    }
+
 }
